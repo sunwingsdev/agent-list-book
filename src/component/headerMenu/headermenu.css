@@ -1,9 +1,9 @@
 .headerTopMenu {
-  margin: 30px 0;
+  margin: 30px 0 20px;
 }
 .headerTopMenu {
   display: flex;
-  column-gap: 70px;
+  column-gap: 40px;
 }
 .headerRightText,
 .headerLeftImg {
@@ -104,6 +104,9 @@
     font-size: 16px;
     font-weight: 400;
   }
+  .headerTopMenu {
+    column-gap: 20px;
+  }
 }
 @media (max-width: 576px) {
   .headerTopMenu {
@@ -116,7 +119,14 @@
   }
   .marqueeSize,
   .marqueeTitle h2 {
-    font-size: 17px;
+    font-size: 16px;
+  }
+  .marqueeTitle span {
+    height: 24px;
+  }
+  .marqueeTitle {
+    padding: 0 6px 0 0;
+    gap: 2px;
   }
 }
 @media (max-width: 450px) {

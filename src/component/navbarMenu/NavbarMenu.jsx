@@ -50,7 +50,7 @@ const NavbarMenu = () => {
 
         <Tab.Content>
           <Tab.Pane eventKey="first">
-            <div className="tabContain" data-aos="fade-up-right">
+            <div className="tabContain" data-aos="fade-up">
               <div className="tabContainItem">
                 <h2>QUICK MASTER AGENT</h2>
                 <div className="tabMaster">
@@ -63,7 +63,7 @@ const NavbarMenu = () => {
                 </div>
               </div>
             </div>
-            <div className="tabContain" data-aos="fade-right">
+            <div className="tabContain" data-aos="flip-left">
               <div className="tabContainItem">
                 <h2>কিভাবে একাউন্ট খুলবেন?</h2>
                 <div className="tabsingletext">
@@ -78,11 +78,11 @@ const NavbarMenu = () => {
                     হোয়াটসঅ্যাপ টি আপনার মোবাইলে আগে থেকেই থাকতে হবে। না থাকলে
                     গুগুল প্লে ষ্টোর থেকে ডাউনলোড করে ইনষ্টল করে নিন।
                   </p>
-                  <p className="mt-5">অনলাইন মাষ্টার এজেন্ট লিস্টঃ</p>
+                  <p className="mt-4 mt-lg-5">অনলাইন মাষ্টার এজেন্ট লিস্টঃ</p>
                 </div>
               </div>
             </div>
-            <div className="tabContain" data-aos="fade-left">
+            <div className="tabContain" data-aos="flip-right">
               <div className="tabContainItem">
                 <h2>এজেন্ট লিস্টঃ</h2>
                 <div className="tabsingletext">
@@ -97,7 +97,7 @@ const NavbarMenu = () => {
                 </div>
               </div>
             </div>
-            <div className="tabContain" data-aos="fade-right">
+            <div className="tabContain" data-aos="flip-up">
               <div className="tabContainItem">
                 <h2>এজেন্ট লিস্টঃ​</h2>
                 <div className="tabsingletext">
@@ -112,11 +112,11 @@ const NavbarMenu = () => {
                     হোয়াটসঅ্যাপ টি আপনার মোবাইলে আগে থেকেই থাকতে হবে। না থাকলে
                     গুগুল প্লে ষ্টোর থেকে ডাউনলোড করে ইনষ্টল করে নিন।
                   </p>
-                  <p className="mt-5">অনলাইন মাষ্টার এজেন্ট লিস্টঃ</p>
+                  <p className="mt-4 mt-lg-5">অনলাইন মাষ্টার এজেন্ট লিস্টঃ</p>
                 </div>
               </div>
             </div>
-            <div className="tabContain" data-aos="fade-left">
+            <div className="tabContain" data-aos="flip-down">
               <div className="tabContainItem">
                 <h2>এজেন্ট এর বিরুদ্ধে অভিযোগ:​</h2>
                 <div className="tabsingletext">
@@ -124,44 +124,44 @@ const NavbarMenu = () => {
                     এজেন্ট এর সাথে আপনার যে কোন ধরনের সমস্যা থাকতে পারে। তার
                     কিছু উদাহরন নিম্নে দেয়া হলোঃ
                   </p>
-                  <p className="mt-5">
+                  <p className="mt-4 mt-lg-5">
                     ** এজেন্ট ঠিক মত ডিপোজিট বা উইথড্র দিচ্ছে না।
                   </p>
-                  <p className="mt-5">
+                  <p className="mt-4 mt-lg-5">
                     ** এজেন্ট এর সকাল ১০ টা থেকে রাত ১০ টা পর্যন্ত কাজ করার কথা।
                     কিন্তু ঠিক মত কাজ করছে না।
                   </p>
-                  <p className="mt-5">
+                  <p className="mt-4 mt-lg-5">
                     ** এজেন্ট ডিপোজিট এর টাকা নিয়েছে কিন্তু ঠিক মত ডিপোজিট
                     দিচ্ছে না।
                   </p>
                   <p>** আপনার আইডি লক হয়ে গেছে আনলক করছে না।</p>
-                  <p className="mt-5">
+                  <p className="mt-4 mt-lg-5">
                     এই রকম নানা অভিযোগ আপনার থাকতে পারে এজেন্ট এর বিরুদ্ধে। এই
                     অভিযোগ গুলোর সমস্যা সমাধানের জন্য আপনাকে প্রথমে জানতে হবে
                     আমাদের আপলাইন গুলো কিভাবে কাজ করে এবং কার কাছে অভিযোগ করবেন।
                   </p>
-                  <p className="mt-5">
+                  <p className="mt-4 mt-lg-5">
                     ** মাষ্টার এজেন্ট এর বিরুদ্ধে অভিযোগ করতে হলে আপনাকে তার
                     সুপার এজেন্টের কাছে অভিযোগ করতে হবে। যে কোন মাষ্টার এজেন্ট
                     এর সুপার এজেন্ট কে তা বের করতে হলে আপনাকে এজেন্টের নামের
                     শেষে কমপ্লেইন বাটন এ ক্লিক করতে হবে।
                   </p>
-                  <p className="mt-5">
+                  <p className="mt-4 mt-lg-5">
                     কমপ্লেইন বাটন এ ক্লিক অরলে ঐ মাষ্টার এজেন্ট এর সুপার এজেন্ট
                     এর নাম দেখতে পারবেন। তখন আপনি ঐ সুপার এজেন্ট এর কাছে ঐ
                     মাষ্টার এজেন্ট এর বিরুদ্ধে অভিযোগ করতে পারবেন। ঠিক সেই রকম
                     ভাবে সুপার এজেন্ট এর নামে অভিযোগ করতে পারবেন সাব এডমিন এর
                     কাছে।
                   </p>
-                  <p className="mt-5">
+                  <p className="mt-4 mt-lg-5">
                     আপনি যদি কোন মাষ্টার এজেন্ট এর নামে অভিযোগ করতে চান – তাহলে
                     তার সুপার এজেন্ট এর কাছে অভিযোগ করতে হবে। যদি সুপার এজেন্ট
                     এর নামে অভিযোগ করতে চান তাহলে সাব এডমিন এর কাছে অভিযোগ করতে
                     হবে। আর সাব এডমিন এর নামে অভিযোগ করতে চাইলে এডমিন এর কাছে
                     অভিযোগ করতে হবে।
                   </p>
-                  <p className="mt-5">
+                  <p className="mt-4 mt-lg-5">
                     যদি আপনার অভিযোগের সমাধান কেউ না দিতে পারে তাহলে আপনি সরাসরি
                     মালিক (সওদাগর) এর কাছে অভিযোগ করবেন। এবং মালিককে (সওদাগরকে)
                     সব বিষয় প্রমান সহ বুঝিয়ে বলবেন।
@@ -169,7 +169,7 @@ const NavbarMenu = () => {
                 </div>
               </div>
             </div>
-            <div className="tabContain" data-aos="fade-right">
+            <div className="tabContain" data-aos="zoom-in">
               <div className="tabContainItem">
                 <h2>কেন আমাদের সাইটে একাউন্ট করবেনঃ​​</h2>
                 <div className="tabsingletext">
@@ -190,7 +190,7 @@ const NavbarMenu = () => {
                 </div>
               </div>
             </div>
-            <div className="tabContain" data-aos="fade-left">
+            <div className="tabContain" data-aos="zoom-in-down">
               <div className="tabContainItemImg">
                 <div className="tabMarqueText">
                   <Typewriter
