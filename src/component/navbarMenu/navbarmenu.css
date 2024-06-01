@@ -22,6 +22,9 @@
   transition: all 360ms ease;
   white-space: nowrap;
 }
+.tabsMenuItemBox .tabsBox_1:last-child {
+  border-right: 0;
+}
 .tabsMenuItemBox .tabsBox_1:hover {
   color: #ffffff;
   background: #232323;
