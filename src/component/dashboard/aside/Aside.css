@@ -6,7 +6,7 @@
   color: #ffffff;
   background: royalblue;
   border-radius: 10px;
-  position: fixed;
+  /* position: fixed; */
 }
 .dashboardLogoImg,
 .dashboardLogoImg img {
@@ -19,17 +19,17 @@
   padding-bottom: 2px !important;
   margin: 20px 0 16px 0 !important;
 }
-.dashboardMenu ul {
+.dashboardMenu {
   margin: 0 !important;
   padding: 0 !important;
   display: flex;
   flex-direction: column;
   row-gap: 4px;
 }
-.dashboardMenu ul li {
+.dashboardMenu li {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   padding: 8px 10px 8px 16px;
   color: #ffffff;
   font-size: 18px;
@@ -37,8 +37,14 @@
   border-radius: 10px;
   transition: all 360ms ease;
 }
-.dashboardMenu ul li.active,
-.dashboardMenu ul li:hover {
+.dashboardMenu li.active,
+.dashboardMenu li:hover {
   color: #000000;
   background: #ffdf6e;
+}
+.bSubMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }
