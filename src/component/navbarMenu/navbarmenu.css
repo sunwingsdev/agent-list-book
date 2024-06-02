@@ -1,10 +1,10 @@
 .tabsArea {
-  padding: 30px 0;
+  padding: 20px 0;
 }
 .tabsMenuItemBox {
   display: flex;
-  justify-content: center;
   align-items: center;
+  overflow-x: auto;
 }
 .tabsMenuItemBox .tabsBox_1 {
   width: 100%;
@@ -20,6 +20,10 @@
   background: #ffffff;
   border-right: 2px solid #3e3e3e;
   transition: all 360ms ease;
+  white-space: nowrap;
+}
+.tabsMenuItemBox .tabsBox_1:last-child {
+  border-right: 0;
 }
 .tabsMenuItemBox .tabsBox_1:hover {
   color: #ffffff;
@@ -66,7 +70,6 @@
 }
 .whatsAppIcon {
   font-size: 40px;
-  padding: 4px;
 }
 .tabNumber {
   font-size: 20px;
@@ -162,9 +165,11 @@
   font-weight: 600;
   color: #ffffff !important;
   background: #516aa2 !important;
+  white-space: nowrap;
 }
 .tabContainItem_2 .table > tbody {
   vertical-align: middle;
+  white-space: nowrap;
 }
 .whatsAppIcon_2 {
   color: #1bd741;
@@ -193,27 +198,59 @@
     font-size: 16px;
     padding: 12px 6px;
   }
+  .tabContainItem {
+    padding: 28px;
+    border-radius: 8px;
+    border: 2px solid #212121;
+  }
 }
 @media (max-width: 767px) {
   .tabContainItem h2 {
     font-size: 24px;
   }
+  .tabMaster h3,
+  .tabMaster span,
   .tabsingletext p {
-    font-size: 18px;
-    line-height: 32px;
+    font-size: 16px;
+    line-height: 28px;
   }
   .tabMarqueText p {
     font-size: 18px;
     line-height: 30px;
-  }
-  .tabsMenuItemBox {
-    flex-wrap: wrap;
-    row-gap: 12px;
   }
   .tabsMenuItemBox .tabsBox_1 {
     width: auto;
     gap: 6px;
     font-size: 18px;
     padding: 10px 14px;
+  }
+  .tabNumber {
+    font-size: 18px;
+  }
+  .tabsingletext {
+    padding: 24px 22px 40px 24px !important;
+  }
+  .tableThBox th {
+    padding: 12px 16px !important;
+    font-size: 18px;
+  }
+}
+@media (max-width: 567px) {
+  .tabContainItem h2 {
+    font-size: 22px;
+    line-height: 34px;
+  }
+  .tabContainItemImg {
+    padding: 40px 28px;
+  }
+  .tableThBox th {
+    padding: 12px 16px !important;
+    font-size: 16px;
+  }
+  .whatsAppIcon {
+    font-size: 30px;
+  }
+  .tabContainItem_2 .table > :not(caption) > * > * {
+    padding: 0.2rem 0.5rem !important;
   }
 }

@@ -10,7 +10,7 @@ const TabData = ({ tableHeading }) => {
       <div className="tabContainItem_2">
         <h2>{tableHeading}</h2>
         <form action="">
-          <lable>Search:</lable>
+          {/* <lable>Search:</lable> */}
           <input type="text" placeholder="Search.." />
         </form>
         <div className="table-responsive">
