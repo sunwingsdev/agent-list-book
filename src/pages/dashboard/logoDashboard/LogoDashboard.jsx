@@ -1,5 +1,5 @@
 import "./LogoDashboard.css";
-import "./LogoDashboard.js";
+// import "./LogoDashboard.js";
 const LogoDashboard = () => {
   return (
     <div>
