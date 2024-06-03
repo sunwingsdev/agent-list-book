@@ -8,4 +8,5 @@ const baseApi = createApi({
   tagTypes: [""],
   endpoints: () => ({}),
 });
+
 export default baseApi;
