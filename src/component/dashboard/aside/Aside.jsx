@@ -43,6 +43,23 @@ const Aside = () => {
             </Link>
           </ul>
         </Link>
+        <Link>
+          <li className="bSubMenu">
+            <div className="d-flex align-items-center gap-2">
+              {/* <FaAffiliatetheme /> */}
+              Home Contents
+            </div>
+            <FaMinus />
+          </li>
+          <ul className="dashboardSubMenu">
+            <Link to={"edit-home"}>
+              <li>▪ Home</li>
+            </Link>
+            <Link>
+              <li>▪ User</li>
+            </Link>
+          </ul>
+        </Link>
       </ul>
       {/* </div> */}
     </div>
