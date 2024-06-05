@@ -11,8 +11,8 @@ import {
 } from "../../../redux/features/allApis/logoApi/logoApi";
 import ConfirmationModal from "../../../component/shared/ConfirmationModal";
 import SimpleModal from "../../../component/shared/SimpleModal";
-import { SuccessToast } from "../../../component/shared/SuccessToast";
 import ErrorToast from "../../../component/shared/ErrorToast";
+import SuccessToast from "../../../component/shared/SuccessToast";
 
 const LogoDashboard = () => {
   const [addLogo] = useAddLogoMutation();

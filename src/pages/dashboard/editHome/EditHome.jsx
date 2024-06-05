@@ -1,36 +1,73 @@
 /* eslint-disable no-irregular-whitespace */
+import { useState } from "react";
 import "./EditHome.css";
-import { Button, FloatingLabel, Form } from "react-bootstrap";
 import { FaFacebookSquare, FaRegEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
+import SimpleModal from "../../../component/shared/SimpleModal";
+import AccountCreateForm from "../../../component/home/AccountCreateForm";
+import AccountCreateProcedureForm from "../../../component/home/AccountCreateProcedureForm";
+import AgentListForm from "../../../component/home/AgentListForm";
+import SocialLinksForm from "../../../component/home/SocialLinksForm";
+import TransactionProcedureForm from "../../../component/home/TransactionProcedureForm";
+import ComplaintAgentForm from "../../../component/home/ComplaintAgentForm";
+import { Button } from "react-bootstrap";
+import AddContentForm from "../../../component/home/AddContentForm";
+import { useGetAllContentsQuery } from "../../../redux/features/allApis/homeContentsApi.js/homeContentsApi";
 
 const EditHome = () => {
+  const { data } = useGetAllContentsQuery();
+  const [card, setCard] = useState("");
+  const [show, setShow] = useState(false);
+  const [addModalShow, setAddModalShow] = useState(false);
+  const handleEditModalOpen = (card) => {
+    setCard(card);
+    setShow(true);
+  };
+
+  const accountCreateData = data?.find(
+    (singleContent) => singleContent.option === "account-create"
+  );
+
+  const handleAddContentModal = (card) => {
+    setCard(card);
+    setAddModalShow(true);
+  };
+
   return (
     <div className="editHomeArea">
       <div className="tabContain">
-        <div className="tabContainItem mb-3">
-          <h2 className="editText_20">কিভাবে একাউন্ট খুলবেন?</h2>
-          <div className="tabsingletext">
-            <p className="editText_16">
-              একাউন্ট খুলতে উপরের মেনু থেকে এজেন্ট লিস্ট এ ক্লিক করুন। এজেন্ট
-              লিষ্ট এর এজেন্ট দের সাথে ইউজার দের শুধু মাত্র হোয়াটসঅ্যাপ এর
-              মাধ্যমে যোগাযোগ করতে হবে। হোয়াটসঅ্যাপ ছাড়া অন্য কোন মাধ্যমে
-              যোগাযোগ করলে বা লেনদেন করলে তা গ্রহনযোগ্য হবে না। হোয়াটসঅ্যাপ এ
-              যোগাযোগ করতে হলে এজেন্ট লিস্টে হোয়াটসঅ্যাপ আইকনের উপরে ক্লিক করুন
-              অথবা ফোন নাম্বার টি মোবাইলে সেভ করে তাকে হোয়াটসাপ এ ম্যাসেজ পাঠাতে
-              পারবেন। হোয়াটসঅ্যাপ টি আপনার মোবাইলে আগে থেকেই থাকতে হবে। না
-              থাকলে গুগুল প্লে ষ্টোর থেকে ডাউনলোড করে ইনষ্টল করে নিন।
-            </p>
-            <p className="mt-4 mt-lg-5 editText_16">
-              অনলাইন মাষ্টার এজেন্ট লিস্টঃ
-            </p>
-          </div>
+        {accountCreateData ? (
+          <div className="tabContainItem mb-3">
+            <h2 className="editText_20">{accountCreateData.title}</h2>
+            <div className="tabsingletext">
+              <p className="editText_16">{accountCreateData.details}</p>
+              {/* <p className="mt-4 mt-lg-5 editText_16">
+                অনলাইন মাষ্টার এজেন্ট লিস্টঃ
+              </p> */}
+            </div>
 
-          <div className="tabContainItem_Icon">
-            <FaRegEdit />
+            <div
+              onClick={() => handleEditModalOpen("account-create")}
+              className="tabContainItem_Icon"
+            >
+              <FaRegEdit />
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="d-flex justify-content-between">
+            <h2 className="editText_20">
+              কিভাবে একাউন্ট খুলবেন? তার বিস্তারিত ফর্ম পূরন করুন
+            </h2>
+            <Button
+              onClick={() => handleAddContentModal("account-create")}
+              type="submit"
+              variant="primary"
+            >
+              এখানে ক্লিক করুন
+            </Button>
+          </div>
+        )}
         <div className="tabContainItem mb-3">
           <h2 className="editText_20">এজেন্ট লিস্টঃ</h2>
           <div className="tabsingletext">
@@ -43,7 +80,10 @@ const EditHome = () => {
             </p>
           </div>
 
-          <div className="tabContainItem_Icon">
+          <div
+            onClick={() => handleEditModalOpen("account-create-procedure")}
+            className="tabContainItem_Icon"
+          >
             <FaRegEdit />
           </div>
         </div>
@@ -65,7 +105,10 @@ const EditHome = () => {
             </p>
           </div>
 
-          <div className="tabContainItem_Icon">
+          <div
+            onClick={() => handleEditModalOpen("agent-list")}
+            className="tabContainItem_Icon"
+          >
             <FaRegEdit />
           </div>
         </div>
@@ -119,7 +162,10 @@ const EditHome = () => {
             </p>
           </div>
 
-          <div className="tabContainItem_Icon">
+          <div
+            onClick={() => handleEditModalOpen("complaint-agent")}
+            className="tabContainItem_Icon"
+          >
             <FaRegEdit />
           </div>
         </div>
@@ -144,7 +190,10 @@ const EditHome = () => {
             </p>
           </div>
 
-          <div className="tabContainItem_Icon">
+          <div
+            onClick={() => handleEditModalOpen("transaction-procedure")}
+            className="tabContainItem_Icon"
+          >
             <FaRegEdit />
           </div>
         </div>
@@ -173,37 +222,42 @@ const EditHome = () => {
             </p>
           </div>
 
-          <div className="tabContainItem_Icon">
+          <div
+            onClick={() => handleEditModalOpen("social-links")}
+            className="tabContainItem_Icon"
+          >
             <FaRegEdit />
           </div>
         </div>
       </div>
-      <div className="editHomeArea_1">
-        <h2 className="mt-2 mb-4">Home Page Contain</h2>
-        <form>
-          <FloatingLabel
-            controlId="floatingTextarea"
-            label="Title"
-            className="mb-2"
-          >
-            <Form.Control type="text" placeholder="Leave a comment here" />
-          </FloatingLabel>
-          <FloatingLabel
-            controlId="floatingTextarea2"
-            label="Comments"
-            className="mb-2"
-          >
-            <Form.Control
-              as="textarea"
-              placeholder="Leave a comment here"
-              style={{ height: "100px" }}
-            />
-          </FloatingLabel>
-          <Button type="submit" variant="primary">
-            Submit
-          </Button>
-        </form>
-      </div>
+      <>
+        {/* edit modals */}
+        <SimpleModal
+          show={show}
+          handleClose={() => setShow(false)}
+          handleShow={() => setShow(true)}
+        >
+          {card === "account-create" && (
+            <AccountCreateForm data={accountCreateData} />
+          )}
+          {card === "account-create-procedure" && (
+            <AccountCreateProcedureForm />
+          )}
+          {card === "transaction-procedure" && <TransactionProcedureForm />}
+          {card === "complaint-agent" && <ComplaintAgentForm />}
+          {card === "agent-list" && <AgentListForm />}
+          {card === "social-links" && <SocialLinksForm />}
+        </SimpleModal>
+      </>
+      <>
+        <SimpleModal
+          show={addModalShow}
+          handleClose={() => setAddModalShow(false)}
+          handleShow={() => setAddModalShow(true)}
+        >
+          {card === "account-create" && <AddContentForm />}
+        </SimpleModal>
+      </>
     </div>
   );
 };
