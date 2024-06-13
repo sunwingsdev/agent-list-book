@@ -2,7 +2,6 @@ import baseApi from "../../baseApi";
 
 const homeContentsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-
     // add  content
     addContent: builder.mutation({
       query: (data) => ({
@@ -18,9 +17,21 @@ const homeContentsApi = baseApi.injectEndpoints({
       query: () => "/home-contents",
       providesTags: ["home-contents"],
     }),
-    
+
+    // edit a content
+    editContent: builder.mutation({
+      query: ({ _id, data }) => ({
+        url: `/home-contents/${_id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: ["home-contents"],
+    }),
   }),
 });
 
-export const { useAddContentMutation, useGetAllContentsQuery } =
-  homeContentsApi;
+export const {
+  useAddContentMutation,
+  useGetAllContentsQuery,
+  useEditContentMutation,
+} = homeContentsApi;
