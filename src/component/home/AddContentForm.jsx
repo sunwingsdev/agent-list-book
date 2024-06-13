@@ -79,6 +79,9 @@ const AddContentForm = ({ card, handleClose }) => {
 
         {(option === "account-create" ||
           option === "account-create-procedure" ||
+          option === "complaint-agent" ||
+          option === "transaction-procedure" ||
+          option === "social-links" ||
           option === "agent-list") && (
           <>
             <FloatingLabel
@@ -111,23 +114,44 @@ const AddContentForm = ({ card, handleClose }) => {
             {errors.details && (
               <p className="text-danger">This field is required</p>
             )}
+            {
+              option === "social-links" && (
+                <FloatingLabel
+                  controlId="floatingTextarea"
+                  label="link"
+                  className="mb-2"
+                >
+                  <Form.Control
+                    type="text"
+                    placeholder="Leave a comment here"
+                    {...register("link", { required: true })}
+                  />
+                </FloatingLabel>
+              )
+              // {errors.title && (
+              //   <p className="text-danger">This field is required</p>
+              // )}
+            }
 
-            <div className="mb-2 d-flex">
-              <Form.Control
-                type="text"
-                placeholder="Add details here"
-                value={currentDetail}
-                onChange={(e) => setCurrentDetail(e.target.value)}
-              />
-              <Button
-                variant="secondary"
-                onClick={handleAddDetail}
-                className="ms-2"
-              >
-                Add
-              </Button>
-            </div>
-
+            {(option === "complaint-agent" ||
+              option === "transaction-procedure" ||
+              option === "account-create-procedure") && (
+              <div className="mb-2 d-flex">
+                <Form.Control
+                  type="text"
+                  placeholder="Add details here"
+                  value={currentDetail}
+                  onChange={(e) => setCurrentDetail(e.target.value)}
+                />
+                <Button
+                  variant="secondary"
+                  onClick={handleAddDetail}
+                  className="ms-2"
+                >
+                  Add
+                </Button>
+              </div>
+            )}
             {detailsList.length > 0 && (
               <ul className="list-group mb-2">
                 {detailsList.map((detail, index) => (
