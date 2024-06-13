@@ -20,6 +20,7 @@ const EditHome = () => {
   const [card, setCard] = useState("");
   const [show, setShow] = useState(false);
   const [addModalShow, setAddModalShow] = useState(false);
+
   const handleEditModalOpen = (card) => {
     setCard(card);
     setShow(true);
@@ -27,6 +28,12 @@ const EditHome = () => {
 
   const accountCreateData = data?.find(
     (singleContent) => singleContent.option === "account-create"
+  );
+  const accountCreateProcedureData = data?.find(
+    (singleContent) => singleContent.option === "account-create-procedure"
+  );
+  const agentListData = data?.find(
+    (singleContent) => singleContent.option === "agent-list"
   );
 
   const handleAddContentModal = (card) => {
@@ -39,12 +46,10 @@ const EditHome = () => {
       <div className="tabContain">
         {accountCreateData ? (
           <div className="tabContainItem mb-3">
-            <h2 className="editText_20">{accountCreateData.title}</h2>
+            <h2 className="editText_20">{accountCreateData?.title}</h2>
             <div className="tabsingletext">
-              <p className="editText_16">{accountCreateData.details}</p>
-              {/* <p className="mt-4 mt-lg-5 editText_16">
-                অনলাইন মাষ্টার এজেন্ট লিস্টঃ
-              </p> */}
+              <p className="editText_16">{accountCreateData?.details}</p>
+             
             </div>
 
             <div
@@ -68,50 +73,72 @@ const EditHome = () => {
             </Button>
           </div>
         )}
-        <div className="tabContainItem mb-3">
-          <h2 className="editText_20">এজেন্ট লিস্টঃ</h2>
-          <div className="tabsingletext">
-            <p className="editText_16">
-              11WICKETS এ একাউন্ট করতে হলে আপনাকে এজেন্ট এর মাধ্যমে একাউন্ট
-              খুলতে হবে। এজেন্ট এর মাধ্যমেই টাকা ডিপোজিট এবং উইথড্র করতে হবে।
-              আপনি যে এজেন্ট এর কাছ থেকে একাউন্ট খুলে নিবেন তার সাথেই সব সময়
-              লেনদেন করতে হবে। ঠিক কোন এজেন্ট কে টাকা দিবেন এবং কিভাবে তার সাথে
-              লেনদেন করবেন তা বুঝতে হলে আপনার নিম্নের তথ্য গুলো পড়া জরুরী ঃ
-            </p>
-          </div>
+        {accountCreateProcedureData ? (
+          <div className="tabContainItem mb-3">
+            <h2 className="editText_20">{accountCreateProcedureData?.title}</h2>
+            <div className="tabsingletext">
+              <p className="editText_16">
+                {accountCreateProcedureData?.details}
+              </p>
+              {accountCreateProcedureData?.detailsList.map((item) => (
+                <p key={item} className="mt-4 mt-lg-5">
+                  {item}
+                </p>
+              ))}
+            </div>
 
-          <div
-            onClick={() => handleEditModalOpen("account-create-procedure")}
-            className="tabContainItem_Icon"
-          >
-            <FaRegEdit />
+            <div
+              onClick={() => handleEditModalOpen("account-create-procedure")}
+              className="tabContainItem_Icon"
+            >
+              <FaRegEdit />
+            </div>
           </div>
-        </div>
-        <div className="tabContainItem mb-3">
-          <h2 className="editText_20">এজেন্ট লিস্টঃ​</h2>
-          <div className="tabsingletext">
-            <p className="editText_16">
-              একাউন্ট খুলতে উপরের মেনু থেকে এজেন্ট লিস্ট এ ক্লিক করুন। এজেন্ট
-              লিষ্ট এর এজেন্ট দের সাথে ইউজার দের শুধু মাত্র হোয়াটসঅ্যাপ এর
-              মাধ্যমে যোগাযোগ করতে হবে। হোয়াটসঅ্যাপ ছাড়া অন্য কোন মাধ্যমে
-              যোগাযোগ করলে বা লেনদেন করলে তা গ্রহনযোগ্য হবে না। হোয়াটসঅ্যাপ এ
-              যোগাযোগ করতে হলে এজেন্ট লিস্টে হোয়াটসঅ্যাপ আইকনের উপরে ক্লিক করুন
-              অথবা ফোন নাম্বার টি মোবাইলে সেভ করে তাকে হোয়াটসাপ এ ম্যাসেজ পাঠাতে
-              পারবেন। হোয়াটসঅ্যাপ টি আপনার মোবাইলে আগে থেকেই থাকতে হবে। না
-              থাকলে গুগুল প্লে ষ্টোর থেকে ডাউনলোড করে ইনষ্টল করে নিন।
-            </p>
-            <p className="mt-4 mt-lg-5 editText_16">
-              অনলাইন মাষ্টার এজেন্ট লিস্টঃ
-            </p>
+        ) : (
+          <div className="d-flex justify-content-between">
+            <h2 className="editText_20">
+              কিভাবে একাউন্ট খুলবেন? তার বিস্তারিত ফর্ম পূরন করুন 2
+            </h2>
+            <Button
+              onClick={() => handleAddContentModal("account-create-procedure")}
+              type="submit"
+              variant="primary"
+            >
+              এখানে ক্লিক করুন
+            </Button>
           </div>
+        )}
+        {agentListData ? (
+          <div className="tabContainItem mb-3">
+            <h2 className="editText_20">{agentListData?.title}​</h2>
+            <div className="tabsingletext">
+              <p className="editText_16">{agentListData?.details}</p>
+              <p className="mt-4 mt-lg-5 editText_16">
+                অনলাইন মাষ্টার এজেন্ট লিস্টঃ
+              </p>
+            </div>
 
-          <div
-            onClick={() => handleEditModalOpen("agent-list")}
-            className="tabContainItem_Icon"
-          >
-            <FaRegEdit />
+            <div
+              onClick={() => handleEditModalOpen("agent-list")}
+              className="tabContainItem_Icon"
+            >
+              <FaRegEdit />
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="d-flex justify-content-between">
+            <h2 className="editText_20">
+              কিভাবে একাউন্ট খুলবেন? তার বিস্তারিত ফর্ম পূরন করুন 3
+            </h2>
+            <Button
+              onClick={() => handleAddContentModal("agent-list")}
+              type="submit"
+              variant="primary"
+            >
+              এখানে ক্লিক করুন
+            </Button>
+          </div>
+        )}
         <div className="tabContainItem mb-3">
           <h2 className="editText_20">এজেন্ট এর বিরুদ্ধে অভিযোগ:​</h2>
           <div className="tabsingletext">
@@ -255,7 +282,10 @@ const EditHome = () => {
           handleClose={() => setAddModalShow(false)}
           handleShow={() => setAddModalShow(true)}
         >
-          {card === "account-create" && <AddContentForm />}
+          <AddContentForm
+            card={card}
+            handleClose={() => setAddModalShow(false)}
+          />
         </SimpleModal>
       </>
     </div>

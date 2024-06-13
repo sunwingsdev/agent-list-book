@@ -6,19 +6,21 @@
   color: #ffffff;
   background: royalblue;
   border-radius: 10px;
-  /* position: fixed; */
 }
+
 .dashboardLogoImg,
 .dashboardLogoImg img {
   margin: auto;
   max-width: 150px;
 }
+
 .DBText {
   font-size: 20px;
   border-bottom: 1px solid #ffdf6e;
   padding-bottom: 2px !important;
   margin: 20px 0 16px 0 !important;
 }
+
 .dashboardMenu {
   margin: 0 !important;
   padding: 0 !important;
@@ -26,6 +28,7 @@
   flex-direction: column;
   row-gap: 4px;
 }
+
 .dashboardMenu li {
   display: flex;
   align-items: center;
@@ -37,14 +40,31 @@
   border-radius: 10px;
   transition: all 360ms ease;
 }
+
 .dashboardMenu li.active,
 .dashboardMenu li:hover {
   color: #000000;
   background: #ffdf6e;
 }
+
 .bSubMenu {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
+}
+
+.dashboardSubMenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.dashboardSubMenu.expanded {
+  max-height: 200px; /* Adjust according to the content */
+}
+
+.rotate-icon {
+  transition: transform 0.3s ease-out;
 }
