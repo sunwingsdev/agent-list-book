@@ -78,10 +78,10 @@ const Aside = () => {
             }`}
           >
             <Link to="/dashboard/edit-home">
-              <li>▪ Home</li>
+              <li>▪ Edit Home</li>
             </Link>
-            <Link to="/dashboard/user">
-              <li>▪ User</li>
+            <Link to="/dashboard/data-input">
+              <li>▪ Data Input</li>
             </Link>
           </ul>
         )}
