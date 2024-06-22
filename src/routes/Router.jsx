@@ -5,6 +5,7 @@ import LogoDashboard from "../pages/dashboard/Logo/LogoDashboard";
 import DashboardHome from "../pages/dashboard/dashboardHome/DashboardHome";
 import EditHome from "../pages/dashboard/editHome/EditHome";
 import DataInput from "../component/dashboard/dataInput/DataInput";
+import DataTable from "../pages/dashboard/dataTable/DataTable";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "data-input",
         element: <DataInput />,
+      },
+      {
+        path: "data-table",
+        element: <DataTable />,
       },
     ],
   },

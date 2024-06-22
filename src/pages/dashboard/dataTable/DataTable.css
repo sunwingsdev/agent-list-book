@@ -1,0 +1,13 @@
+.DT_icon {
+  padding: 0 6px 6px 6px;
+  font-size: 20px;
+  border-radius: 6px;
+  transition: all 360ms ease;
+}
+.DT_icon:hover {
+  color: #000dff;
+  background: #3333335e;
+}
+.DT_icon:hover:last-child {
+  color: #ff0000;
+}
