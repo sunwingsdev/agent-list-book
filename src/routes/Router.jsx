@@ -6,6 +6,7 @@ import DashboardHome from "../pages/dashboard/dashboardHome/DashboardHome";
 import EditHome from "../pages/dashboard/editHome/EditHome";
 import DataInput from "../component/dashboard/dataInput/DataInput";
 import DataTable from "../pages/dashboard/dataTable/DataTable";
+import Headline from "../pages/dashboard/headline/Headline";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "logo",
         element: <LogoDashboard />,
+      },
+      {
+        path: "headline",
+        element: <Headline />,
       },
       {
         path: "edit-home",

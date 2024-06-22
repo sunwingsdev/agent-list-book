@@ -74,6 +74,9 @@ const Aside = () => {
               menuCollapsed.homeContents ? "" : "expanded"
             }`}
           >
+            <Link to="/dashboard/headline">
+              <li>▪ Headline</li>
+            </Link>
             <Link to="/dashboard/edit-home">
               <li>▪ Edit Home</li>
             </Link>
