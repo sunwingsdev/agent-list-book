@@ -4,13 +4,12 @@ import { FaWhatsappSquare } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "../navbarMenu/navbarmenu.css";
 
-const TabData = ({ tableHeading }) => {
+const TabData = ({ tableHeading, rows }) => {
   return (
     <div className="tabContain_2">
       <div className="tabContainItem_2">
         <h2>{tableHeading}</h2>
         <form action="">
-          {/* <lable>Search:</lable> */}
           <input type="text" placeholder="Search.." />
         </form>
         <div className="table-responsive">
@@ -25,17 +24,19 @@ const TabData = ({ tableHeading }) => {
               </tr>
             </thead>
             <tbody>
-              <tr className="text-center">
-                <td>Tamim Khan</td>
-                <td>001</td>
-                <td>
-                  <Link>
-                    <FaWhatsappSquare className="whatsAppIcon whatsAppIcon_2" />
-                  </Link>
-                </td>
-                <td>+971556850160</td>
-                <td>COMPLAIN</td>
-              </tr>
+              {rows?.map((row) => (
+                <tr key={row._id} className="text-center">
+                  <td>{row?.type}</td>
+                  <td>{row?.id}</td>
+                  <td>
+                    <Link to={`http://wa.me/${row?.number}`}>
+                      <FaWhatsappSquare className="whatsAppIcon whatsAppIcon_2" />
+                    </Link>
+                  </td>
+                  <td>{row?.number}</td>
+                  <td>{row?.complain}</td>
+                </tr>
+              ))}
             </tbody>
           </Table>
         </div>
