@@ -4,6 +4,17 @@ const DataInput = () => {
   return (
     <div className="dataInputText">
       <form action="" className="form">
+        <select
+          className="form__input mb-4"
+          aria-label="Default select example"
+        >
+          <option value="admin">Admin</option>
+          <option value="sub-admin">Sub Admin</option>
+          <option value="super-agent-list">Super Agent List</option>
+          <option value="master">Master</option>
+          <option value="service">Service</option>
+        </select>
+
         <input
           type="text"
           placeholder="TYPE"
@@ -38,6 +49,10 @@ const DataInput = () => {
         <label htmlFor="subject" className="form__label">
           Complain
         </label>
+
+        <button type="submit" className="btn btn-primary">
+          Sign in
+        </button>
       </form>
     </div>
   );
