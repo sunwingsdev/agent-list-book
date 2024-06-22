@@ -17,7 +17,19 @@ const dataApi = baseApi.injectEndpoints({
       query: () => "/data",
       providesTags: ["data"],
     }),
+
+    deleteSingleData: builder.mutation({
+      query: (id) => ({
+        url: `/data/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["data"],
+    }),
   }),
 });
 
-export const { useAddDataMutation, useGetAllDataQuery } = dataApi;
+export const {
+  useAddDataMutation,
+  useGetAllDataQuery,
+  useDeleteSingleDataMutation,
+} = dataApi;

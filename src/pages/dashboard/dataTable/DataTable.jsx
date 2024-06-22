@@ -5,12 +5,46 @@ import { Link } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
 import { AiTwotoneDelete } from "react-icons/ai";
 import "./DataTable.css";
-import { useGetAllDataQuery } from "../../../redux/features/allApis/dataApi/dataApi";
+import {
+  useDeleteSingleDataMutation,
+  useGetAllDataQuery,
+} from "../../../redux/features/allApis/dataApi/dataApi";
+import SimpleModal from "../../../component/shared/SimpleModal";
+import ConfirmationModal from "../../../component/shared/ConfirmationModal";
+import { useToasts } from "react-toast-notifications";
 
 const DataTable = () => {
   const { data, isLoading, isError } = useGetAllDataQuery();
+  const [deleteSingleData] = useDeleteSingleDataMutation();
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("oldest"); // State to track sorting order
+  const [show, setShow] = useState(false);
+  const [id, setId] = useState("");
+  const { addToast } = useToasts();
+
+  const handleShow = (id) => {
+    setShow(true);
+    setId(id);
+  };
+
+  // handle delete functionality
+  const handleDelete = async () => {
+    try {
+      const result = await deleteSingleData(id);
+      if (result.data.deletedCount > 0) {
+        addToast("Data deleted successfully", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        setShow(false);
+      }
+    } catch (error) {
+      addToast(error.message, {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
+  };
 
   // Function to handle search input change
   const handleSearchChange = (e) => {
@@ -68,76 +102,92 @@ const DataTable = () => {
   };
 
   return (
-    <div className="">
-      <div className="tabContainItem_2">
-        <div className="table-responsive">
-          <Form.Group controlId="searchField">
-            <Form.Control
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={handleSearchChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="sortField">
-            <Form.Label>Sort By:</Form.Label>
-            <Form.Control
-              as="select"
-              value={sortOrder}
-              onChange={handleSortChange}
-            >
-              <option value="oldest">Oldest</option>
-              <option value="latest">Latest</option>
-            </Form.Control>
-          </Form.Group>
-          <Table striped bordered hover>
-            <thead>
-              <tr className="text-center tableThBox">
-                <th>TYPE</th>
-                <th>ROLE</th>
-                <th>ID</th>
-                <th>PHONE APP LINK</th>
-                <th>NUMBER </th>
-                <th>COMPLAIN</th>
-                <th>ACTION</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredData.length !== 0 ? (
-                filteredData.map(({ type, id, role, number, complain }) => (
-                  <tr key={id} className="text-center">
-                    <td>{type}</td>
-                    <td>{role}</td>
-                    <td>{id}</td>
-                    <td>
-                      <Link to={`http://wa.me/${number}`}>
-                        <FaWhatsappSquare className="whatsAppIcon whatsAppIcon_2" />
-                      </Link>
-                    </td>
-                    <td>{number}</td>
-                    <td>{complain}</td>
-                    <td>
-                      <Link className="DT_icon">
-                        <FaRegEdit />
-                      </Link>
-                      <Link className="DT_icon">
-                        <AiTwotoneDelete />
-                      </Link>
+    <>
+      <div className="">
+        <div className="tabContainItem_2">
+          <div className="table-responsive">
+            <Form.Group controlId="searchField">
+              <Form.Control
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={handleSearchChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="sortField">
+              <Form.Label>Sort By:</Form.Label>
+              <Form.Control
+                as="select"
+                value={sortOrder}
+                onChange={handleSortChange}
+              >
+                <option value="oldest">Oldest</option>
+                <option value="latest">Latest</option>
+              </Form.Control>
+            </Form.Group>
+            <Table striped bordered hover>
+              <thead>
+                <tr className="text-center tableThBox">
+                  <th>TYPE</th>
+                  <th>ROLE</th>
+                  <th>ID</th>
+                  <th>PHONE APP LINK</th>
+                  <th>NUMBER </th>
+                  <th>COMPLAIN</th>
+                  <th>ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredData.length !== 0 ? (
+                  filteredData.map(
+                    ({ _id, type, id, role, number, complain }) => (
+                      <tr key={id} className="text-center">
+                        <td>{type}</td>
+                        <td>{role}</td>
+                        <td>{id}</td>
+                        <td>
+                          <Link to={`http://wa.me/${number}`}>
+                            <FaWhatsappSquare className="whatsAppIcon whatsAppIcon_2" />
+                          </Link>
+                        </td>
+                        <td>{number}</td>
+                        <td>{complain}</td>
+                        <td>
+                          <Link className="DT_icon">
+                            <FaRegEdit />
+                          </Link>
+                          <Link className="DT_icon">
+                            <AiTwotoneDelete onClick={() => handleShow(_id)} />
+                          </Link>
+                        </td>
+                      </tr>
+                    )
+                  )
+                ) : (
+                  <tr>
+                    <td colSpan="7" className="text-center">
+                      No data found
                     </td>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="7" className="text-center">
-                    No data found
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </Table>
+                )}
+              </tbody>
+            </Table>
+          </div>
         </div>
       </div>
-    </div>
+      <>
+        <SimpleModal
+          show={show}
+          handleClose={() => setShow(false)}
+          handleShow={() => setShow(true)}
+        >
+          <ConfirmationModal
+            handleClose={() => setShow(false)}
+            handleDelete={handleDelete}
+          />
+        </SimpleModal>
+      </>
+    </>
   );
 };
 
