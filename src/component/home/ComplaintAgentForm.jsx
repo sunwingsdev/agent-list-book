@@ -5,7 +5,7 @@ import { useEditContentMutation } from "../../redux/features/allApis/homeContent
 import ErrorToast from "../shared/ErrorToast";
 import SuccessToast from "../shared/SuccessToast";
 
-const ComplaintAgentForm = ({ data }) => {
+const ComplaintAgentForm = ({ data, handleClose }) => {
   const { _id, title, details, detailsList } = data;
   const [editContent] = useEditContentMutation();
   const {
@@ -26,6 +26,7 @@ const ComplaintAgentForm = ({ data }) => {
     try {
       const result = await editContent({ _id, data });
       if (result.data.modifiedCount) {
+        handleClose();
         SuccessToast("Edited successfully");
       }
     } catch (error) {
