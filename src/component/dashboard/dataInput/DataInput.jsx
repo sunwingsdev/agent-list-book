@@ -48,6 +48,7 @@ const DataInput = () => {
           <option value="super-agent-list">Super Agent List</option>
           <option value="master">Master</option>
           <option value="service">Service</option>
+          <option value="quickContact">Quick Contact</option>
         </select>
 
         <input
