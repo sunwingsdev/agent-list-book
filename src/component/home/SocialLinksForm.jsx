@@ -5,7 +5,7 @@ import { useEditContentMutation } from "../../redux/features/allApis/homeContent
 import SuccessToast from "../shared/SuccessToast";
 import ErrorToast from "../shared/ErrorToast";
 
-const SocialLinksForm = ({ data }) => {
+const SocialLinksForm = ({ data, handleClose }) => {
   const { title, details, _id } = data;
   const [editContent] = useEditContentMutation();
 
@@ -29,6 +29,7 @@ const SocialLinksForm = ({ data }) => {
         data: data,
       });
       if (result.data.modifiedCount > 0) {
+        handleClose();
         SuccessToast("Edited successfully");
       }
     } catch (error) {

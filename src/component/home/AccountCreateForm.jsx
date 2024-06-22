@@ -5,7 +5,7 @@ import { useEditContentMutation } from "../../redux/features/allApis/homeContent
 import SuccessToast from "../shared/SuccessToast";
 import ErrorToast from "../shared/ErrorToast";
 
-const AccountCreateForm = ({ data }) => {
+const AccountCreateForm = ({ data,handleClose }) => {
   const { title, details,_id } = data;
   const [editContent] = useEditContentMutation();
 
@@ -30,6 +30,7 @@ const AccountCreateForm = ({ data }) => {
       });
       if (result.data.modifiedCount > 0) {
         SuccessToast("Edited successfully");
+        handleClose();
       }
     } catch (error) {
       ErrorToast(error.message);

@@ -212,7 +212,7 @@ const EditHome = () => {
           <div className="tabContainItem mb-3 tabContainItemBox">
             <div className="tabMarqueText">
               <Typewriter
-                words={SocialLinksData?.title}
+                words={SocialLinksData?.title.split(" ")}
                 loop={0}
                 cursor={true}
                 cursorColor="#ffdf6e"
@@ -259,20 +259,40 @@ const EditHome = () => {
           handleShow={() => setShow(true)}
         >
           {card === "account-create" && (
-            <AccountCreateForm data={accountCreateData} />
+            <AccountCreateForm
+              data={accountCreateData}
+              handleClose={() => setShow(false)}
+            />
           )}
-          {card === "agent-list" && <AgentListForm data={agentListData} />}
+          {card === "agent-list" && (
+            <AgentListForm
+              data={agentListData}
+              handleClose={() => setShow(false)}
+            />
+          )}
           {card === "account-create-procedure" && (
-            <AccountCreateProcedureForm data={accountCreateProcedureData} />
+            <AccountCreateProcedureForm
+              data={accountCreateProcedureData}
+              handleClose={() => setShow(false)}
+            />
           )}
           {card === "transaction-procedure" && (
-            <TransactionProcedureForm data={transactionProcedureData} />
+            <TransactionProcedureForm
+              data={transactionProcedureData}
+              handleClose={() => setShow(false)}
+            />
           )}
           {card === "complaint-agent" && (
-            <ComplaintAgentForm data={complaintAgentData} />
+            <ComplaintAgentForm
+              data={complaintAgentData}
+              handleClose={() => setShow(false)}
+            />
           )}
           {card === "social-links" && (
-            <SocialLinksForm data={SocialLinksData} />
+            <SocialLinksForm
+              data={SocialLinksData}
+              handleClose={() => setShow(false)}
+            />
           )}
         </SimpleModal>
       </>

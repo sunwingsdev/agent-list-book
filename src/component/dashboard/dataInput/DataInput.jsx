@@ -16,7 +16,7 @@ const DataInput = () => {
 
         <input
           type="link"
-          placeholder="Email"
+          placeholder="Link"
           className="form__input"
           id="email"
         />
@@ -25,7 +25,7 @@ const DataInput = () => {
         </label>
 
         <input
-          type="number"
+          type="text"
           placeholder="Subject"
           className="form__input"
           id="subject"
@@ -34,12 +34,7 @@ const DataInput = () => {
           Number
         </label>
 
-        <input
-          type="text"
-          placeholder="Subject"
-          className="form__input"
-          id="subject"
-        />
+        <textarea placeholder="Subject" className="form__input" id="subject" />
         <label htmlFor="subject" className="form__label">
           Complain
         </label>
