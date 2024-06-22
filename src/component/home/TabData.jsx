@@ -29,7 +29,7 @@ const TabData = ({ tableHeading, rows }) => {
                   <td>{row?.type}</td>
                   <td>{row?.id}</td>
                   <td>
-                    <Link>
+                    <Link to={`http://wa.me/${row?.number}`}>
                       <FaWhatsappSquare className="whatsAppIcon whatsAppIcon_2" />
                     </Link>
                   </td>

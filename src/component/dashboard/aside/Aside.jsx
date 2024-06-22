@@ -62,9 +62,6 @@ const Aside = () => {
             <Link to="/dashboard/logo">
               <li>▪ Logo</li>
             </Link>
-            <Link to="/dashboard/user">
-              <li>▪ User</li>
-            </Link>
           </ul>
         )}
         <li className="bSubMenu" onClick={() => toggleMenu("homeContents")}>
@@ -82,6 +79,9 @@ const Aside = () => {
             </Link>
             <Link to="/dashboard/data-input">
               <li>▪ Data Input</li>
+            </Link>
+            <Link to="/dashboard/data-table">
+              <li>▪ Data Table</li>
             </Link>
           </ul>
         )}

@@ -10,7 +10,7 @@ const DataInput = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -19,10 +19,10 @@ const DataInput = () => {
       const result = await addData(data);
       if (result.data.insertedId) {
         SuccessToast("Data added");
-        reset();  // Reset the form after successful submission
+        reset(); // Reset the form after successful submission
       }
     } catch (error) {
-      ErrorToast(error.message)
+      ErrorToast(error.message);
     }
   };
 
@@ -55,27 +55,23 @@ const DataInput = () => {
 
         <input
           type="text"
-          placeholder="Link"
-          className="form__input"
-          id="link"
-          {...register("link", { required: true })}
-        />
-        <label htmlFor="link" className="form__label">
-          Phone App Link
-        </label>
-        {errors.link && <span className="error">This field is required</span>}
-
-        <input
-          type="text"
-          placeholder="Subject"
+          placeholder="Number"
           className="form__input"
           id="number"
-          {...register("number", { required: true })}
+          {...register("number", {
+            required: "This field is required",
+            pattern: {
+              value: /^\+\d+$/,
+              message: "Please enter a valid number with country code",
+            },
+          })}
         />
         <label htmlFor="number" className="form__label">
           Number
         </label>
-        {errors.number && <span className="error">This field is required</span>}
+        {errors.number && (
+          <span className="error">{errors.number.message}</span>
+        )}
 
         <textarea
           placeholder="Complain"
