@@ -1,28 +1,37 @@
 import { useForm } from "react-hook-form";
 import "./DataInput.css";
 import { useAddDataMutation } from "../../../redux/features/allApis/dataApi/dataApi";
-import SuccessToast from "../../shared/SuccessToast";
-import ErrorToast from "../../shared/ErrorToast";
+import { useToasts } from "react-toast-notifications";
+import { useState } from "react";
 
 const DataInput = () => {
   const [addData] = useAddDataMutation();
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm();
+  const { addToast } = useToasts();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    setLoading(true);
     try {
       const result = await addData(data);
       if (result.data.insertedId) {
-        SuccessToast("Data added");
+        addToast("Data added successfully", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        setLoading(false);
         reset(); // Reset the form after successful submission
       }
     } catch (error) {
-      ErrorToast(error.message);
+      addToast(error.message, {
+        appearance: "error",
+        autoDismiss: true,
+      });
     }
   };
 
@@ -86,8 +95,8 @@ const DataInput = () => {
           <span className="error">This field is required</span>
         )}
 
-        <button type="submit" className="btn btn-primary">
-          Submit
+        <button disabled={loading} type="submit" className="btn btn-primary">
+          {loading ? "Submitting..." : "Submit"}
         </button>
       </form>
     </div>
