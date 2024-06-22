@@ -15,32 +15,46 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import TabData from "../home/TabData";
 import { useGetAllContentsQuery } from "../../redux/features/allApis/homeContentsApi.js/homeContentsApi";
+import { useGetAllDataQuery } from "../../redux/features/allApis/dataApi/dataApi";
 
 AOS.init();
 
 const NavbarMenu = () => {
-  const { data, isLoading } = useGetAllContentsQuery();
+  const { data: contents, isLoading: contentLoading } =
+    useGetAllContentsQuery();
+  const { data, isLoading: dataLoading } = useGetAllDataQuery();
+  const adminData = data?.filter((singleData) => singleData.role === "admin");
+  const serviceData = data?.filter(
+    (singleData) => singleData.role === "service"
+  );
+  const subAdminData = data?.filter(
+    (singleData) => singleData.role === "sub-admin"
+  );
+  const masterData = data?.filter((singleData) => singleData.role === "master");
+  const superAgentData = data?.filter(
+    (singleData) => singleData.role === "super-agent-list"
+  );
 
-  const accountCreateData = data?.find(
+  const accountCreateData = contents?.find(
     (singleContent) => singleContent.option === "account-create"
   );
-  const accountCreateProcedureData = data?.find(
+  const accountCreateProcedureData = contents?.find(
     (singleContent) => singleContent.option === "account-create-procedure"
   );
-  const agentListData = data?.find(
+  const agentListData = contents?.find(
     (singleContent) => singleContent.option === "agent-list"
   );
-  const complaintAgentData = data?.find(
+  const complaintAgentData = contents?.find(
     (singleContent) => singleContent.option === "complaint-agent"
   );
-  const transactionProcedureData = data?.find(
+  const transactionProcedureData = contents?.find(
     (singleContent) => singleContent.option === "transaction-procedure"
   );
-  const SocialLinksData = data?.find(
+  const SocialLinksData = contents?.find(
     (singleContent) => singleContent.option === "social-links"
   );
 
-  if (isLoading) {
+  if (contentLoading) {
     return <div>Loading...</div>;
   }
 
@@ -188,19 +202,19 @@ const NavbarMenu = () => {
             </div>
           </Tab.Pane>
           <Tab.Pane eventKey="second">
-            <TabData tableHeading={"ADMIN"} />
+            <TabData tableHeading={"ADMIN"} rows={adminData} />
           </Tab.Pane>
           <Tab.Pane eventKey="third">
-            <TabData tableHeading={"SUB ADMIN"} />
+            <TabData tableHeading={"SUB ADMIN"} rows={subAdminData} />
           </Tab.Pane>
           <Tab.Pane eventKey="four">
-            <TabData tableHeading={"SUPER AGENT LIST"} />
+            <TabData tableHeading={"SUPER AGENT LIST"} rows={superAgentData} />
           </Tab.Pane>
           <Tab.Pane eventKey="five">
-            <TabData tableHeading={"MASTER"} />
+            <TabData tableHeading={"MASTER"} rows={masterData} />
           </Tab.Pane>
           <Tab.Pane eventKey="six">
-            <TabData tableHeading={"SERVICE"} />
+            <TabData tableHeading={"SERVICE"} rows={serviceData} />
           </Tab.Pane>
         </Tab.Content>
       </Tab.Container>

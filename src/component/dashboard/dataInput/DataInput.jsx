@@ -1,12 +1,38 @@
+import { useForm } from "react-hook-form";
 import "./DataInput.css";
+import { useAddDataMutation } from "../../../redux/features/allApis/dataApi/dataApi";
+import SuccessToast from "../../shared/SuccessToast";
+import ErrorToast from "../../shared/ErrorToast";
 
 const DataInput = () => {
+  const [addData] = useAddDataMutation();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      const result = await addData(data);
+      if (result.data.insertedId) {
+        SuccessToast("Data added");
+        reset();  // Reset the form after successful submission
+      }
+    } catch (error) {
+      ErrorToast(error.message)
+    }
+  };
+
   return (
     <div className="dataInputText">
-      <form action="" className="form">
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
         <select
           className="form__input mb-4"
           aria-label="Default select example"
+          {...register("role")}
         >
           <option value="admin">Admin</option>
           <option value="sub-admin">Sub Admin</option>
@@ -20,38 +46,52 @@ const DataInput = () => {
           placeholder="TYPE"
           className="form__input"
           id="name"
+          {...register("type", { required: true })}
         />
         <label htmlFor="name" className="form__label">
           Type
         </label>
+        {errors.type && <span className="error">This field is required</span>}
 
         <input
-          type="link"
+          type="text"
           placeholder="Link"
           className="form__input"
-          id="email"
+          id="link"
+          {...register("link", { required: true })}
         />
-        <label htmlFor="email" className="form__label">
+        <label htmlFor="link" className="form__label">
           Phone App Link
         </label>
+        {errors.link && <span className="error">This field is required</span>}
 
         <input
           type="text"
           placeholder="Subject"
           className="form__input"
-          id="subject"
+          id="number"
+          {...register("number", { required: true })}
         />
-        <label htmlFor="subject" className="form__label">
+        <label htmlFor="number" className="form__label">
           Number
         </label>
+        {errors.number && <span className="error">This field is required</span>}
 
-        <textarea placeholder="Subject" className="form__input" id="subject" />
-        <label htmlFor="subject" className="form__label">
+        <textarea
+          placeholder="Complain"
+          className="form__input"
+          id="complain"
+          {...register("complain", { required: true })}
+        />
+        <label htmlFor="complain" className="form__label">
           Complain
         </label>
+        {errors.complain && (
+          <span className="error">This field is required</span>
+        )}
 
         <button type="submit" className="btn btn-primary">
-          Sign in
+          Submit
         </button>
       </form>
     </div>
