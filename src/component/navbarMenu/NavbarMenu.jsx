@@ -139,7 +139,7 @@ const NavbarMenu = () => {
                 <div className="tabContainItem">No data added</div>
               )}
             </div>
-            <div className="tabContain" data-aos="flip-down">
+            <div className="tabContain" data-aos="zoom-in">
               {complaintAgentData ? (
                 <div className="tabContainItem">
                   <h2>{complaintAgentData?.title}​</h2>
