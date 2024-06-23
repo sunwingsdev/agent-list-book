@@ -8,6 +8,8 @@ import DataInput from "../component/dashboard/dataInput/DataInput";
 import DataTable from "../pages/dashboard/dataTable/DataTable";
 import Headline from "../pages/dashboard/headline/Headline";
 import SignUp from "../pages/home/Signup/Signup";
+import Login from "../pages/home/Login/Login";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +18,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "",
@@ -47,6 +53,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 

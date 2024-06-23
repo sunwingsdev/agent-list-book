@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Aside.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import dashboard_logo from "../../../assets/Layer-1.png";
 import {
   FaHome,
@@ -9,19 +9,39 @@ import {
   FaMinus,
   FaPlus,
 } from "react-icons/fa";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { useToasts } from "react-toast-notifications";
 
 const Aside = () => {
+  const { logOut } = useContext(AuthContext);
   // State for collapsing menus
   const [menuCollapsed, setMenuCollapsed] = useState({
     theme: true,
     homeContents: true,
   });
+  const { addToast } = useToasts();
 
   const toggleMenu = (menu) => {
     setMenuCollapsed((prevState) => ({
       ...prevState,
       [menu]: !prevState[menu],
     }));
+  };
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        addToast("Successfully Logged Out!", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+      })
+      .catch((error) => {
+        addToast(error.message, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      });
   };
 
   return (
@@ -34,17 +54,20 @@ const Aside = () => {
       <h2 className="DBText">DashBoard</h2>
       <ul className="dashboardMenu">
         <Link to="/">
-          <li className="active">
+          <li className="">
             <FaHome />
             Home
           </li>
         </Link>
-        <Link to="/user">
+        <NavLink
+          className={({ isActive }) => `${isActive && "tabActive"}`}
+          to="/user"
+        >
           <li>
             <FaUser />
             User
           </li>
-        </Link>
+        </NavLink>
         <li className="bSubMenu" onClick={() => toggleMenu("theme")}>
           <div className="d-flex align-items-center gap-2">
             <FaAffiliatetheme />
@@ -59,9 +82,12 @@ const Aside = () => {
               menuCollapsed.theme ? "" : "expanded"
             }`}
           >
-            <Link to="/dashboard/logo">
+            <NavLink
+              className={({ isActive }) => ` ${isActive && "tabActive"}`}
+              to="/dashboard/logo"
+            >
               <li>▪ Logo</li>
-            </Link>
+            </NavLink>
           </ul>
         )}
         <li className="bSubMenu" onClick={() => toggleMenu("homeContents")}>
@@ -74,20 +100,35 @@ const Aside = () => {
               menuCollapsed.homeContents ? "" : "expanded"
             }`}
           >
-            <Link to="/dashboard/headline">
+            <NavLink
+              className={({ isActive }) => ` ${isActive && "tabActive"}`}
+              to="/dashboard/headline"
+            >
               <li>▪ Headline</li>
-            </Link>
-            <Link to="/dashboard/edit-home">
+            </NavLink>
+            <NavLink
+              className={({ isActive }) => ` ${isActive && "tabActive"}`}
+              to="/dashboard/edit-home"
+            >
               <li>▪ Edit Home</li>
-            </Link>
-            <Link to="/dashboard/data-input">
+            </NavLink>
+            <NavLink
+              className={({ isActive }) => ` ${isActive && "tabActive"}`}
+              to="/dashboard/data-input"
+            >
               <li>▪ Data Input</li>
-            </Link>
-            <Link to="/dashboard/data-table">
+            </NavLink>
+            <NavLink
+              className={({ isActive }) => ` ${isActive && "tabActive"}`}
+              to="/dashboard/data-table"
+            >
               <li>▪ Data Table</li>
-            </Link>
+            </NavLink>
           </ul>
         )}
+        <li className="bSubMenu" onClick={handleLogout}>
+          <div className="d-flex align-items-center gap-2">Log out</div>
+        </li>
       </ul>
     </div>
   );

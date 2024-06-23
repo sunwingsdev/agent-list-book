@@ -13,6 +13,7 @@ import SimpleModal from "../../../component/shared/SimpleModal";
 import ConfirmationModal from "../../../component/shared/ConfirmationModal";
 import { useToasts } from "react-toast-notifications";
 import EditData from "../../../component/dashboard/EditData/EditData";
+import Loader from "../../../component/shared/Loader";
 
 const DataTable = () => {
   const { data, isLoading, isError } = useGetAllDataQuery();
@@ -80,7 +81,7 @@ const DataTable = () => {
 
   // Render loading state if data is still fetching
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   // Render error message if fetching data resulted in an error

@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
-import ErrorToast from "../shared/ErrorToast";
-import SuccessToast from "../shared/SuccessToast";
 import { useAddContentMutation } from "../../redux/features/allApis/homeContentsApi.js/homeContentsApi";
+import { useToasts } from "react-toast-notifications";
 
 const AddContentForm = ({ card, handleClose }) => {
   const [addContent] = useAddContentMutation();
   const [option, setOption] = useState(null);
   const [detailsList, setDetailsList] = useState([]);
   const [currentDetail, setCurrentDetail] = useState("");
+  const { addToast } = useToasts();
   const {
     register,
     handleSubmit,
@@ -24,10 +24,10 @@ const AddContentForm = ({ card, handleClose }) => {
       const result = await addContent(data);
       if (result.data.insertedId) {
         handleClose();
-        SuccessToast("Content added");
+        addToast("Content added", { appearance: "success", autoDismiss: true });
       }
     } catch (error) {
-      ErrorToast(error.message);
+      addToast(error.message, { appearance: "error", autoDismiss: true });
     }
   };
 
