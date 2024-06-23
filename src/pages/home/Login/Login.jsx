@@ -45,33 +45,35 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            {...register("email", { required: "Email is required" })}
-          />
-          {errors.email && (
-            <span className="error-message">{errors.email.message}</span>
-          )}
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            {...register("password", { required: "Password is required" })}
-          />
-          {errors.password && (
-            <span className="error-message">{errors.password.message}</span>
-          )}
-        </div>
-        <button type="submit">
-          {loadingState ? "Logging in..." : "Login"}
-        </button>
-      </form>
+    <div className="loginSection">
+      <div className="login-container">
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              {...register("email", { required: "Email is required" })}
+            />
+            {errors.email && (
+              <span className="error-message">{errors.email.message}</span>
+            )}
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              {...register("password", { required: "Password is required" })}
+            />
+            {errors.password && (
+              <span className="error-message">{errors.password.message}</span>
+            )}
+          </div>
+          <button type="submit">
+            {loadingState ? "Logging in..." : "Login"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

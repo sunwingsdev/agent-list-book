@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import "./Aside.css";
 import { Link, NavLink } from "react-router-dom";
-import dashboard_logo from "../../../assets/Layer-1.png";
 import {
   FaHome,
   FaUser,
@@ -11,8 +10,11 @@ import {
 } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useToasts } from "react-toast-notifications";
+import { useGetAllLogosQuery } from "../../../redux/features/allApis/logoApi/logoApi";
 
 const Aside = () => {
+  const { data } = useGetAllLogosQuery();
+  const selectedLogo = data?.find((logo) => logo.isSelected === true);
   const { logOut } = useContext(AuthContext);
   // State for collapsing menus
   const [menuCollapsed, setMenuCollapsed] = useState({
@@ -48,7 +50,7 @@ const Aside = () => {
     <div className="aside">
       <div className="dashboardLogoImg">
         <Link to="/">
-          <img src={dashboard_logo} alt="Dashboard Logo" />
+          <img src={selectedLogo?.logoUrl} alt="Dashboard Logo" />
         </Link>
       </div>
       <h2 className="DBText">DashBoard</h2>

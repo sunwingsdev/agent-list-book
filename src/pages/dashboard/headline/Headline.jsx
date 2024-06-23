@@ -1,6 +1,6 @@
-// import { AiTwotoneAudio } from "react-icons/ai";
+import { AiTwotoneAudio } from "react-icons/ai";
 import "./Headline.css";
-// import Marquee from "react-fast-marquee";
+import Marquee from "react-fast-marquee";
 import {
   useAddHeadlineMutation,
   useGetHeadlineQuery,
@@ -77,19 +77,16 @@ const Headline = () => {
           </form>
         </div>
       ) : (
-        <div>
-          <p>{headline?.title}</p>
-          <p>{headline?.headline}</p>
-        </div>
-      )}
-      {/* <div className="headerMarquee">
+        <div className="headerMarquee">
         <div className="marqueeTitle">
           <AiTwotoneAudio className="marqueeSize" />
           <h2>{headline?.title}</h2>
           <span></span>
         </div>
         <Marquee className="marqueeText">{headline?.headline}</Marquee>
-      </div> */}
+      </div>
+      )}
+    
     </div>
   );
 };
