@@ -1,5 +1,4 @@
 import "./headermenu.css";
-import logo from "../../assets/Layer-1.png";
 import { Typewriter } from "react-simple-typewriter";
 import { AiTwotoneAudio } from "react-icons/ai";
 import Marquee from "react-fast-marquee";
@@ -8,7 +7,7 @@ import { useGetAllLogosQuery } from "../../redux/features/allApis/logoApi/logoAp
 import { useGetHeadlineQuery } from "../../redux/features/allApis/headlineApi/headlineApi";
 
 const HeaderMenu = () => {
-  const { data, isLoading } = useGetAllLogosQuery();
+  const { data } = useGetAllLogosQuery();
   const { data: headline } = useGetHeadlineQuery();
   const selectedLogo = data?.find((logo) => logo.isSelected === true);
   return (
