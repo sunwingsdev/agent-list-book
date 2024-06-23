@@ -2,12 +2,13 @@ import { useForm, Controller } from "react-hook-form";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 import "../../pages/dashboard/editHome/EditHome.css";
 import { useEditContentMutation } from "../../redux/features/allApis/homeContentsApi.js/homeContentsApi";
-import ErrorToast from "../shared/ErrorToast";
-import SuccessToast from "../shared/SuccessToast";
+import { useToasts } from "react-toast-notifications";
+
 
 const TransactionProcedureForm = ({ data }) => {
   const { _id, title, details, detailsList } = data;
   const [editContent] = useEditContentMutation();
+  const { addToast } = useToasts();
   const {
     register,
     handleSubmit,
@@ -26,10 +27,10 @@ const TransactionProcedureForm = ({ data }) => {
     try {
       const result = await editContent({ _id, data });
       if (result.data.modifiedCount) {
-        SuccessToast("Edited successfully");
+        addToast("Edited successfully", { appearance: "success", autoDismiss: true });
       }
     } catch (error) {
-      ErrorToast(error.message);
+      addToast(error.message, { appearance: "error", autoDismiss: true });
     }
   };
 

@@ -48,6 +48,8 @@ a:hover {
   display: flex;
   gap: 20px;
 }
+.tabActive {
+  background-color: #f10808 !important;
 
 .dashboard_Main_contain {
   width: 80%;

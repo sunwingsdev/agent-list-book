@@ -7,6 +7,7 @@ import {
 } from "../../../redux/features/allApis/headlineApi/headlineApi";
 import { useForm } from "react-hook-form";
 import { useToasts } from "react-toast-notifications";
+import Loader from "../../../component/shared/Loader";
 
 const Headline = () => {
   const [addHeadline] = useAddHeadlineMutation();
@@ -35,7 +36,7 @@ const Headline = () => {
   };
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   return (

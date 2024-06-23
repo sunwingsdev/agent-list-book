@@ -2,12 +2,11 @@ import { useForm } from "react-hook-form";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 import "../../pages/dashboard/editHome/EditHome.css";
 import { useEditContentMutation } from "../../redux/features/allApis/homeContentsApi.js/homeContentsApi";
-import SuccessToast from "../shared/SuccessToast";
-import ErrorToast from "../shared/ErrorToast";
-
+import { useToasts } from "react-toast-notifications";
 const AccountCreateForm = ({ data, handleClose }) => {
   const { title, details, _id } = data;
   const [editContent] = useEditContentMutation();
+  const { addToast } = useToasts();
 
   // Initialize useForm hook
   const {
@@ -30,10 +29,13 @@ const AccountCreateForm = ({ data, handleClose }) => {
       });
       if (result.data.modifiedCount > 0) {
         handleClose();
-        SuccessToast("Edited successfully");
+        addToast("Edited successfully", {
+          appearance: "success",
+          autoDismiss: true,
+        });
       }
     } catch (error) {
-      ErrorToast(error.message);
+      addToast(error.message, { appearance: "error", autoDismiss: true });
     }
   };
 

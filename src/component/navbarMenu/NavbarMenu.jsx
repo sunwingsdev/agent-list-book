@@ -16,6 +16,7 @@ import "aos/dist/aos.css";
 import TabData from "../home/TabData";
 import { useGetAllContentsQuery } from "../../redux/features/allApis/homeContentsApi.js/homeContentsApi";
 import { useGetAllDataQuery } from "../../redux/features/allApis/dataApi/dataApi";
+import Loader from "../shared/Loader";
 
 AOS.init();
 
@@ -60,7 +61,7 @@ const NavbarMenu = () => {
   );
 
   if (contentLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
