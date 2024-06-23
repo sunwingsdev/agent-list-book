@@ -5,9 +5,11 @@ import { AiTwotoneAudio } from "react-icons/ai";
 import Marquee from "react-fast-marquee";
 import NavbarMenu from "../navbarMenu/NavbarMenu";
 import { useGetAllLogosQuery } from "../../redux/features/allApis/logoApi/logoApi";
+import { useGetHeadlineQuery } from "../../redux/features/allApis/headlineApi/headlineApi";
 
 const HeaderMenu = () => {
   const { data, isLoading } = useGetAllLogosQuery();
+  const { data: headline } = useGetHeadlineQuery();
   const selectedLogo = data?.find((logo) => logo.isSelected === true);
   return (
     <div className="container">
@@ -27,13 +29,10 @@ const HeaderMenu = () => {
       <div className="headerMarquee">
         <div className="marqueeTitle">
           <AiTwotoneAudio className="marqueeSize" />
-          <h2>NEWS</h2>
+          <h2>{headline?.title}</h2>
           <span></span>
         </div>
-        <Marquee className="marqueeText">
-          Welcome to our 11wickets official agentlist..Thanks For Stay With
-          Tamim Khan Family...
-        </Marquee>
+        <Marquee className="marqueeText">{headline?.headline}</Marquee>
       </div>
       <NavbarMenu />
     </div>

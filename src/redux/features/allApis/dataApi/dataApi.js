@@ -25,6 +25,15 @@ const dataApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["data"],
     }),
+
+    updateSingleData: builder.mutation({
+      query: ({ _id, data }) => ({
+        url: `/data/${_id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: ["data"],
+    }),
   }),
 });
 
@@ -32,4 +41,5 @@ export const {
   useAddDataMutation,
   useGetAllDataQuery,
   useDeleteSingleDataMutation,
+  useUpdateSingleDataMutation,
 } = dataApi;
