@@ -23,7 +23,7 @@ AOS.init();
 const NavbarMenu = () => {
   const { data: contents, isLoading: contentLoading } =
     useGetAllContentsQuery();
-  const { data, isLoading: dataLoading } = useGetAllDataQuery();
+  const { data } = useGetAllDataQuery();
   const adminData = data?.filter((singleData) => singleData.role === "admin");
   const serviceData = data?.filter(
     (singleData) => singleData.role === "service"
@@ -145,7 +145,7 @@ const NavbarMenu = () => {
                 <div className="tabContainItem">No data added</div>
               )}
             </div>
-            <div className="tabContain" data-aos="flip-down">
+            <div className="tabContain" data-aos="zoom-in">
               {complaintAgentData ? (
                 <div className="tabContainItem">
                   <h2>{complaintAgentData?.title}​</h2>

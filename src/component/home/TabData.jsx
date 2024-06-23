@@ -10,7 +10,7 @@ const TabData = ({ tableHeading, rows }) => {
       <div className="tabContainItem_2">
         <h2>{tableHeading}</h2>
         <form action="">
-          <input type="text" placeholder="Search.." />
+          {/* <input type="text" placeholder="Search.." /> */}
         </form>
         <div className="table-responsive">
           <Table striped bordered hover>
