@@ -12,6 +12,7 @@ import {
 import SimpleModal from "../../../component/shared/SimpleModal";
 import ConfirmationModal from "../../../component/shared/ConfirmationModal";
 import { useToasts } from "react-toast-notifications";
+import EditData from "../../../component/dashboard/EditData/EditData";
 
 const DataTable = () => {
   const { data, isLoading, isError } = useGetAllDataQuery();
@@ -19,11 +20,18 @@ const DataTable = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("oldest"); // State to track sorting order
   const [show, setShow] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [id, setId] = useState("");
   const { addToast } = useToasts();
 
   const handleShow = (id) => {
     setShow(true);
+    setId(id);
+  };
+
+  // handle edit
+  const handleEdit = (id) => {
+    setShowEditModal(true);
     setId(id);
   };
 
@@ -154,7 +162,7 @@ const DataTable = () => {
                         <td>{complain}</td>
                         <td>
                           <Link className="DT_icon">
-                            <FaRegEdit />
+                            <FaRegEdit onClick={() => handleEdit(_id)} />
                           </Link>
                           <Link className="DT_icon">
                             <AiTwotoneDelete onClick={() => handleShow(_id)} />
@@ -185,6 +193,15 @@ const DataTable = () => {
             handleClose={() => setShow(false)}
             handleDelete={handleDelete}
           />
+        </SimpleModal>
+      </>
+      <>
+        <SimpleModal
+          show={showEditModal}
+          handleClose={() => setShowEditModal(false)}
+          handleShow={() => setShowEditModal(true)}
+        >
+          <EditData id={id} />
         </SimpleModal>
       </>
     </>

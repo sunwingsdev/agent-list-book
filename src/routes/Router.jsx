@@ -7,6 +7,7 @@ import EditHome from "../pages/dashboard/editHome/EditHome";
 import DataInput from "../component/dashboard/dataInput/DataInput";
 import DataTable from "../pages/dashboard/dataTable/DataTable";
 import Headline from "../pages/dashboard/headline/Headline";
+import SignUp from "../pages/home/Signup/Signup";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
         element: <DataTable />,
       },
     ],
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
   },
 ]);
 
