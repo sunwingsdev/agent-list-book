@@ -22,7 +22,7 @@ AOS.init();
 const NavbarMenu = () => {
   const { data: contents, isLoading: contentLoading } =
     useGetAllContentsQuery();
-  const { data, isLoading: dataLoading } = useGetAllDataQuery();
+  const { data } = useGetAllDataQuery();
   const adminData = data?.filter((singleData) => singleData.role === "admin");
   const serviceData = data?.filter(
     (singleData) => singleData.role === "service"
@@ -52,6 +52,11 @@ const NavbarMenu = () => {
   );
   const SocialLinksData = contents?.find(
     (singleContent) => singleContent.option === "social-links"
+  );
+
+  // filtered quick master agent
+  const quickMasterData = data?.find(
+    (singleData) => singleData.role === "quickContact"
   );
 
   if (contentLoading) {
@@ -95,11 +100,11 @@ const NavbarMenu = () => {
                 <h2>QUICK MASTER AGENT</h2>
                 <div className="tabMaster">
                   <h3>MASTER</h3>
-                  <span>001</span>
-                  <Link>
+                  <span>{quickMasterData?.id}</span>
+                  <Link to={`http://wa.me/${quickMasterData?.number}`}>
                     <FaWhatsappSquare className="whatsAppIcon" />
                   </Link>
-                  <Link className="tabNumber">+17707648880</Link>
+                  <Link className="tabNumber">{quickMasterData?.number}</Link>
                 </div>
               </div>
             </div>

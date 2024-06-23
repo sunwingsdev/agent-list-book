@@ -48,3 +48,7 @@ a:hover {
   display: flex;
   gap: 20px;
 }
+
+.dashboard_Main_contain {
+  width: 80%;
+}
