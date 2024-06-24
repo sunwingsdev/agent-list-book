@@ -61,3 +61,18 @@
   border: 4px solid #fff;
   border-radius: 10px;
 }
+
+@media (max-width: 991px) {
+  .editHomeArea {
+    width: 100%;
+    max-width: 100%;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+  }
+  .tabContainItem_Icon {
+    top: -2px;
+    right: -2px;
+    padding: 2px 8px 8px 8px;
+  }
+}

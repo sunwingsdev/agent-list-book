@@ -54,3 +54,13 @@ a:hover {
 .dashboard_Main_contain {
   width: 80%;
 }
+@media (max-width: 1200px) {
+  .dashboard_Main_contain {
+    width: 74%;
+  }
+}
+@media (max-width: 991px) {
+  .dashboard_Main_contain {
+    width: 100%;
+  }
+}

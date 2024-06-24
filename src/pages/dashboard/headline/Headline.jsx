@@ -88,8 +88,7 @@ const Headline = () => {
           </form>
         </div>
       ) : (
-        <div className="">
-          <FiEdit onClick={() => handleHeadlineEdit(headline?._id)} />
+        <div className="marqueeContainer">
           <div className="headerMarquee">
             <div className="marqueeTitle">
               <AiTwotoneAudio className="marqueeSize" />
@@ -97,6 +96,12 @@ const Headline = () => {
               <span></span>
             </div>
             <Marquee className="marqueeText">{headline?.headline}</Marquee>
+          </div>
+          <div className="editButton">
+            <FiEdit
+              size={30}
+              onClick={() => handleHeadlineEdit(headline?._id)}
+            />
           </div>
         </div>
       )}
