@@ -139,7 +139,7 @@ const Signup = () => {
 
       <button
         type="submit"
-        disabled={!isValid || !passwordMatch}
+        disabled={!isValid || !passwordMatch || loading}
         className="submit-button"
       >
         {loading ? "Signing up..." : "Sign Up"}

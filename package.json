@@ -1,6 +1,7 @@
 {
   "name": "agentlistbook",
   "private": true,
+  "homepage": "https://agentlist.oracletechnology.net",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

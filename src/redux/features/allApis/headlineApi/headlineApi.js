@@ -17,7 +17,21 @@ const headlineApi = baseApi.injectEndpoints({
       query: () => "/headline",
       providesTags: ["headline"],
     }),
+
+    // update headline
+    updateHeadline: builder.mutation({
+      query: (info) => ({
+        url: `/headline/${info.id}`,
+        method: "PATCH",
+        body: info.data,
+      }),
+      invalidatesTags: ["headline"],
+    }),
   }),
 });
 
-export const { useAddHeadlineMutation,useGetHeadlineQuery } = headlineApi;
+export const {
+  useAddHeadlineMutation,
+  useGetHeadlineQuery,
+  useUpdateHeadlineMutation,
+} = headlineApi;
