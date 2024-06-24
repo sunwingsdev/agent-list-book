@@ -98,9 +98,9 @@ const LogoDashboard = () => {
   };
 
   return (
-    <Container className="form-container mt-5 p-4 shadow rounded bg-light">
+    <Container className="form-container mt-5 p-4 shadow rounded">
       <Form id="photo-upload-form" onSubmit={handleSubmit}>
-        <h2 className="text-center mb-4">Upload Your Photo</h2>
+        <h2 className="text-center text-white mb-4">Upload Your Photo</h2>
         <Form.Group className="form-group">
           <div
             className={`upload-container ${previewUrl ? "image-selected" : ""}`}

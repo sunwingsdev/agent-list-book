@@ -1,3 +1,9 @@
+.loginSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 .login-container {
   max-width: 400px;
   margin: 0 auto;
@@ -6,23 +12,25 @@
   border-radius: 5px;
   background-color: #f9f9f9;
 }
-
+.login-container h2 {
+  text-align: center;
+  padding-bottom: 8px !important;
+  margin-bottom: 20px !important;
+  border-bottom: 1px solid rgb(176, 176, 176);
+}
 .form-group {
   margin-bottom: 15px;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-input[type="email"],
-input[type="password"] {
+.login-container input[type="email"],
+.login-container input[type="password"] {
   width: 100%;
   padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-shadow: none !important;
+  outline: none;
 }
 
 .error-message {

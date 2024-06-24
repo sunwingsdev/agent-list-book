@@ -4,7 +4,8 @@
 }
 
 .upload-container {
-  width: 100%;
+  width: 50%;
+  margin: auto;
   padding: 40px;
   border: 2px dashed #007bff;
   border-radius: 10px;
