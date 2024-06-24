@@ -48,3 +48,19 @@ a:hover {
   display: flex;
   gap: 20px;
 }
+.tabActive {
+  background-color: #f10808 !important;
+}
+.dashboard_Main_contain {
+  width: 80%;
+}
+@media (max-width: 1200px) {
+  .dashboard_Main_contain {
+    width: 74%;
+  }
+}
+@media (max-width: 991px) {
+  .dashboard_Main_contain {
+    width: 100%;
+  }
+}

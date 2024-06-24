@@ -52,7 +52,7 @@
   text-shadow: 0px 0px 10px rgba(255, 63, 114.99999999999993, 0.99);
 }
 .tabMaster {
-  max-width: 380px;
+  max-width: 440px;
   margin: 20px auto 0;
   display: flex;
   justify-content: center;
@@ -252,5 +252,24 @@
   }
   .tabContainItem_2 .table > :not(caption) > * > * {
     padding: 0.2rem 0.5rem !important;
+  }
+  .tabContainItem {
+    padding: 32px 18px;
+  }
+}
+@media (max-width: 450px) {
+  .tabMaster {
+    gap: 5px;
+  }
+  .tabMaster h3,
+  .tabMaster span,
+  .tabsingletext p {
+    font-size: 14px;
+  }
+  .tabNumber {
+    font-size: 14px;
+  }
+  .whatsAppIcon {
+    font-size: 26px;
   }
 }

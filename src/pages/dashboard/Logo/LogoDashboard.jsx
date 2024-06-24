@@ -11,8 +11,7 @@ import {
 } from "../../../redux/features/allApis/logoApi/logoApi";
 import ConfirmationModal from "../../../component/shared/ConfirmationModal";
 import SimpleModal from "../../../component/shared/SimpleModal";
-import { SuccessToast } from "../../../component/shared/SuccessToast";
-import ErrorToast from "../../../component/shared/ErrorToast";
+import { useToasts } from "react-toast-notifications";
 
 const LogoDashboard = () => {
   const [addLogo] = useAddLogoMutation();
@@ -24,6 +23,7 @@ const LogoDashboard = () => {
   const [id, setId] = useState("");
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { addToast } = useToasts();
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -46,16 +46,19 @@ const LogoDashboard = () => {
       try {
         const result = await addLogo(logoInfo);
         if (result.data.insertedId) {
-          SuccessToast("Logo uploaded successfully");
+          addToast("Logo uploaded successfully", {
+            appearance: "success",
+            autoDismiss: true,
+          });
           handleRemoveImage();
           setLoading(false);
         }
       } catch (error) {
-        ErrorToast(error.message);
+        addToast(error.message, { appearance: "error", autoDismiss: true });
         setLoading(false);
       }
     } else {
-      ErrorToast("No file selected");
+      addToast("No file selected", { appearance: "error", autoDismiss: true });
     }
   };
 
@@ -68,11 +71,14 @@ const LogoDashboard = () => {
     try {
       const result = await deleteLogo(id);
       if (result.data.deletedCount > 0) {
-        SuccessToast("Logo deleted successfully");
+        addToast("Logo deleted successfully", {
+          appearance: "success",
+          autoDismiss: true,
+        });
         setShow(false);
       }
     } catch (error) {
-      ErrorToast(error.message);
+      addToast(error.message, { appearance: "error", autoDismiss: true });
     }
   };
 
@@ -81,17 +87,20 @@ const LogoDashboard = () => {
       const result = await updateLogoSelection({ id, isSelected: value });
       if (result.data.modifiedCount > 0) {
         setShow(false);
-        SuccessToast("Logo selected successfully");
+        addToast("Logo selected successfully", {
+          appearance: "success",
+          autoDismiss: true,
+        });
       }
     } catch (error) {
-      ErrorToast(error.message);
+      addToast(error.message, { appearance: "error", autoDismiss: true });
     }
   };
 
   return (
-    <Container className="form-container mt-5 p-4 shadow rounded bg-light">
+    <Container className="form-container mt-5 p-4 shadow rounded">
       <Form id="photo-upload-form" onSubmit={handleSubmit}>
-        <h2 className="text-center mb-4">Upload Your Photo</h2>
+        <h2 className="text-center text-white mb-4">Upload Your Photo</h2>
         <Form.Group className="form-group">
           <div
             className={`upload-container ${previewUrl ? "image-selected" : ""}`}

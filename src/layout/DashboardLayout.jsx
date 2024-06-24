@@ -6,8 +6,9 @@ const DashboardLayout = () => {
     <div className="container-fluid">
       <div className="dashboardMainArea">
         <Aside />
-        {/* <div className="mainContain">This is Dashboard Contain</div> */}
-        <Outlet />
+        <div className="dashboard_Main_contain">
+          <Outlet />
+        </div>
       </div>
     </div>
   );
