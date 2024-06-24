@@ -114,30 +114,30 @@ const DataTable = () => {
     <>
       <div className="">
         <div className="tabContainItem_2">
-          <div className="table-responsive">
-            <div className="D_DT_topContain">
-              <Form.Group controlId="searchField">
+          <div className="D_DT_topContain">
+            <Form.Group controlId="searchField">
+              <Form.Control
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={handleSearchChange}
+              />
+            </Form.Group>
+            <div className="D_DT_sortBy">
+              <Form.Label>Sort By : </Form.Label>
+              <Form.Group controlId="sortField">
                 <Form.Control
-                  type="text"
-                  placeholder="Search..."
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-                />
+                  as="select"
+                  value={sortOrder}
+                  onChange={handleSortChange}
+                >
+                  <option value="oldest">Oldest</option>
+                  <option value="latest">Latest</option>
+                </Form.Control>
               </Form.Group>
-              <div className="D_DT_sortBy">
-                <Form.Label>Sort By : </Form.Label>
-                <Form.Group controlId="sortField">
-                  <Form.Control
-                    as="select"
-                    value={sortOrder}
-                    onChange={handleSortChange}
-                  >
-                    <option value="oldest">Oldest</option>
-                    <option value="latest">Latest</option>
-                  </Form.Control>
-                </Form.Group>
-              </div>
             </div>
+          </div>
+          <div className="table-responsive">
             <Table striped bordered hover>
               <thead>
                 <tr className="text-center tableThBox">
