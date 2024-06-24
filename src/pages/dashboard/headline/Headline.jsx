@@ -8,6 +8,10 @@ import {
 import { useForm } from "react-hook-form";
 import { useToasts } from "react-toast-notifications";
 import Loader from "../../../component/shared/Loader";
+import { FiEdit } from "react-icons/fi";
+import { useState } from "react";
+import SimpleModal from "../../../component/shared/SimpleModal";
+import EditHeadline from "../../../component/dashboard/EditHeadline/EditHeadline";
 
 const Headline = () => {
   const [addHeadline] = useAddHeadlineMutation();
@@ -18,6 +22,8 @@ const Headline = () => {
     reset,
     formState: { errors },
   } = useForm();
+  const [show, setShow] = useState(false);
+  const [id, setId] = useState("");
   const { addToast } = useToasts();
 
   const onSubmit = async (data) => {
@@ -33,6 +39,11 @@ const Headline = () => {
     } catch (error) {
       addToast(error.message, { appearance: "error", autoDismiss: true });
     }
+  };
+
+  const handleHeadlineEdit = (id) => {
+    setShow(true);
+    setId(id);
   };
 
   if (isLoading) {
@@ -77,16 +88,27 @@ const Headline = () => {
           </form>
         </div>
       ) : (
-        <div className="headerMarquee">
-        <div className="marqueeTitle">
-          <AiTwotoneAudio className="marqueeSize" />
-          <h2>{headline?.title}</h2>
-          <span></span>
+        <div className="">
+          <FiEdit onClick={() => handleHeadlineEdit(headline?._id)} />
+          <div className="headerMarquee">
+            <div className="marqueeTitle">
+              <AiTwotoneAudio className="marqueeSize" />
+              <h2>{headline?.title}</h2>
+              <span></span>
+            </div>
+            <Marquee className="marqueeText">{headline?.headline}</Marquee>
+          </div>
         </div>
-        <Marquee className="marqueeText">{headline?.headline}</Marquee>
-      </div>
       )}
-    
+      <>
+        <SimpleModal
+          show={show}
+          handleClose={() => setShow(false)}
+          handleShow={() => setShow(true)}
+        >
+          <EditHeadline id={id} />
+        </SimpleModal>
+      </>
     </div>
   );
 };

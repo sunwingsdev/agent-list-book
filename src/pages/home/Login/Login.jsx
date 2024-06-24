@@ -69,7 +69,7 @@ const Login = () => {
               <span className="error-message">{errors.password.message}</span>
             )}
           </div>
-          <button type="submit">
+          <button disabled={loadingState} type="submit">
             {loadingState ? "Logging in..." : "Login"}
           </button>
         </form>
