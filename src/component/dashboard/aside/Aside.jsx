@@ -57,7 +57,9 @@ const Aside = () => {
       <button className="mobile-menu-toggle" onClick={toggleMobileMenu}>
         {mobileMenuVisible ? <FaTimes /> : <FaBars />}
       </button>
-      <div className={`aside ${mobileMenuVisible ? "mobile-menu-visible" : ""}`}>
+      <div
+        className={`aside ${mobileMenuVisible ? "mobile-menu-visible" : ""}`}
+      >
         <div className="dashboardLogoImg">
           <Link to="/">
             <img src={selectedLogo?.logoUrl} alt="Dashboard Logo" />
@@ -73,7 +75,7 @@ const Aside = () => {
           </Link>
           <NavLink
             className={({ isActive }) => `${isActive && "tabActive"}`}
-            to="/user"
+            to="/dashboard/users"
           >
             <li>
               <FaUser />

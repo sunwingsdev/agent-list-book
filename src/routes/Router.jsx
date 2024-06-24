@@ -10,6 +10,7 @@ import Headline from "../pages/dashboard/headline/Headline";
 import SignUp from "../pages/home/Signup/Signup";
 import Login from "../pages/home/Login/Login";
 import PrivateRoute from "./PrivateRoute";
+import Users from "../pages/dashboard/users/Users";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <DashboardHome />,
+      },
+      {
+        path: "users",
+        element: <Users />,
       },
       {
         path: "logo",
