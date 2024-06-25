@@ -57,25 +57,37 @@ const Aside = () => {
       <button className="mobile-menu-toggle" onClick={toggleMobileMenu}>
         {mobileMenuVisible ? <FaTimes /> : <FaBars />}
       </button>
-      <div
-        className={`aside ${mobileMenuVisible ? "mobile-menu-visible" : ""}`}
-      >
+      <div className={`aside ${mobileMenuVisible ? "mobile-menu-visible" : ""}`}>
         <div className="dashboardLogoImg">
           <Link to="/">
             <img src={selectedLogo?.logoUrl} alt="Dashboard Logo" />
           </Link>
         </div>
-        <h2 className="DBText">DashBoard</h2>
+        <h2 className="DBText">Dashboard</h2>
         <ul className="dashboardMenu">
-          <Link to="/">
-            <li className="">
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? "tabActive" : "")}
+            end
+          >
+            <li>
               <FaHome />
               Home
             </li>
-          </Link>
+          </NavLink>
           <NavLink
-            className={({ isActive }) => `${isActive && "tabActive"}`}
+            to="/dashboard"
+            className={({ isActive }) => (isActive ? "tabActive" : "")}
+            end
+          >
+            <li>
+              <FaUser />
+              Dashboard Home
+            </li>
+          </NavLink>
+          <NavLink
             to="/dashboard/users"
+            className={({ isActive }) => (isActive ? "tabActive" : "")}
           >
             <li>
               <FaUser />
@@ -91,14 +103,10 @@ const Aside = () => {
           </li>
 
           {!menuCollapsed.theme && (
-            <ul
-              className={`dashboardSubMenu ${
-                menuCollapsed.theme ? "" : "expanded"
-              }`}
-            >
+            <ul className={`dashboardSubMenu ${menuCollapsed.theme ? "" : "expanded"}`}>
               <NavLink
-                className={({ isActive }) => ` ${isActive && "tabActive"}`}
                 to="/dashboard/logo"
+                className={({ isActive }) => (isActive ? "tabActive" : "")}
               >
                 <li>▪ Logo</li>
               </NavLink>
@@ -109,32 +117,28 @@ const Aside = () => {
             {menuCollapsed.homeContents ? <FaPlus /> : <FaMinus />}
           </li>
           {!menuCollapsed.homeContents && (
-            <ul
-              className={`dashboardSubMenu ${
-                menuCollapsed.homeContents ? "" : "expanded"
-              }`}
-            >
+            <ul className={`dashboardSubMenu ${menuCollapsed.homeContents ? "" : "expanded"}`}>
               <NavLink
-                className={({ isActive }) => ` ${isActive && "tabActive"}`}
                 to="/dashboard/headline"
+                className={({ isActive }) => (isActive ? "tabActive" : "")}
               >
                 <li>▪ Headline</li>
               </NavLink>
               <NavLink
-                className={({ isActive }) => ` ${isActive && "tabActive"}`}
                 to="/dashboard/edit-home"
+                className={({ isActive }) => (isActive ? "tabActive" : "")}
               >
                 <li>▪ Edit Home</li>
               </NavLink>
               <NavLink
-                className={({ isActive }) => ` ${isActive && "tabActive"}`}
                 to="/dashboard/data-input"
+                className={({ isActive }) => (isActive ? "tabActive" : "")}
               >
                 <li>▪ Data Input</li>
               </NavLink>
               <NavLink
-                className={({ isActive }) => ` ${isActive && "tabActive"}`}
                 to="/dashboard/data-table"
+                className={({ isActive }) => (isActive ? "tabActive" : "")}
               >
                 <li>▪ Data Table</li>
               </NavLink>

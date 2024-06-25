@@ -108,6 +108,7 @@ const Users = () => {
                       <td>{email}</td>
                       <td>
                         <RxCross2
+                          className="deleteButtonCross"
                           size={30}
                           onClick={() => handleDeleteModal(_id)}
                         />
@@ -138,7 +139,9 @@ const Users = () => {
               {Array.from({ length: totalPages }, (_, index) => (
                 <Button
                   key={index}
-                  variant={currentPage === index + 1 ? "primary" : "outline-primary"}
+                  variant={
+                    currentPage === index + 1 ? "primary" : "outline-primary"
+                  }
                   onClick={() => handlePageChange(index + 1)}
                 >
                   {index + 1}
